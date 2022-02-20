@@ -9,7 +9,7 @@
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"
       />
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light"  style="font-size:18px;">Vamos a ganar</span>
     </a>
 
     <!-- Sidebar -->
@@ -64,6 +64,19 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <BotonMenu
+                nameMenu="mi Botón"
+                status="nav-link"
+                link="dh.html"
+                icon="nav-icon fas fa-th"
+              />
+              <BotonMenu
+                nameMenu="Otro botón"
+                status="nav-link"
+                link="dh.html"
+                icon="nav-icon fas fa-th"
+              />
+
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
@@ -704,3 +717,13 @@
     <!-- /.sidebar -->
   </aside>
 </template>
+
+<script>
+import BotonMenu from "./BotonMenu";
+
+export default {
+  components: {
+    BotonMenu,
+  },
+};
+</script>

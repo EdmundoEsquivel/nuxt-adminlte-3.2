@@ -12,6 +12,9 @@ module.exports = {
   */
   head: {
     title: pkg.name,
+    htmlAttrs: {
+      lang: 'es'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -51,7 +54,8 @@ module.exports = {
       { src: '/dist/js/pages/dashboard.js', body: true }
     ],
     bodyAttrs: {
-      class: 'hold-transition sidebar-mini layout-fixed'
+      class: ['hold-transition', 'dark-mode', 'sidebar-mini', 'layout-fixed', 'layout-navbar-fixed', 'layout-footer-fixed', 'text-sm']
+       
     }
 
   },
@@ -87,7 +91,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
+    // 'bootstrap-vue/nuxt',
     
   ],
   /*
