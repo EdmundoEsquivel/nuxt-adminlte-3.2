@@ -9,6 +9,7 @@ const app = express();
 let config = require("../nuxt.config.js");
 config.dev = !(process.env.NODE_ENV === "production");
 
+const models = require("./models/index.js");
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config);
@@ -39,6 +40,10 @@ async function start() {
         return res.status(422).json({ errors: errors.array() });
       }
       console.log(req.body);
+      models.User.create({
+        email: req.body.email,
+        password: req.body.password,
+      });
     }
   );
 
