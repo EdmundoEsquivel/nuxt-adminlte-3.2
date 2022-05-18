@@ -2,14 +2,16 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" data-widget="pushmenu" class="brand-link">
       <img
         src="dist/img/AdminLTELogo.png"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"
       />
-      <span class="brand-text font-weight-light"  style="font-size:18px;">Vamos a ganar</span>
+      <span class="brand-text font-weight-light" style="font-size: 18px"
+        >Vamos a ganar</span
+      >
     </a>
 
     <!-- Sidebar -->
@@ -24,7 +26,7 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="/perfil"> Edmundo Esquivel </a>
         </div>
       </div>
 
@@ -71,11 +73,24 @@
                 icon="nav-icon fas fa-th"
               />
               <BotonMenu
-                nameMenu="Otro botón"
+                v-if="$store.state.user"
+                @click="logout"
+                nameMenu="Salir"
                 status="nav-link"
-                link="dh.html"
-                icon="nav-icon fas fa-th"
+                link="#"
+                icon="nav-icon fas fa-sign-out-alt"
               />
+              <li class="nav-item">
+                <a
+                  v-if="$store.state.user"
+                  @click="logout"
+                  href="#"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Salir ok</p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
@@ -724,6 +739,23 @@ import BotonMenu from "./BotonMenu";
 export default {
   components: {
     BotonMenu,
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$axios.post("/api/logout");
+        this.$store.commit("SET_USER", null);
+        //  this.$router.push(
+        //    {
+        //      path : "/login",
+        //     // replace: 'true'
+        //    });
+        return (location = "/login");
+      } catch (error) {
+        throw new Error(error);
+      }
+      // console.log("test 123");
+    },
   },
 };
 </script>

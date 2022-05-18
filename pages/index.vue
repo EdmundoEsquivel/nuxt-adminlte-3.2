@@ -856,6 +856,11 @@
 
 <script>
 export default {
+  fetch ({store, redirect}) {
+    if (!store.state.user || (store.state.user && store.state.user.isAuthenticated===false)){
+      return redirect('/login')
+    }
+  },
   layout: "adminLte",
   components: {},
 };

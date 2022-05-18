@@ -1,9 +1,10 @@
 <template>
   <li class="nav-item">
-    <a :href="link" :class="status">
+    <nuxt-link :to="link" :class="status">
       <i :class="icon"></i>
       <p>{{ nameMenu }}</p>
-    </a>
+    </nuxt-link>
+    
   </li>
 </template>
 

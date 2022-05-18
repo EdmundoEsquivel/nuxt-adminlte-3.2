@@ -17,7 +17,7 @@ import Footer from '../components/pages/Footer'
 import ControlSidebar from '../components/pages/ControlSidebar.vue'
 export default {
   components: {
-    NavBar, SideBar, Footer, Preloader, ControlSidebar
+    NavBar, SideBar, Footer, Preloader, ControlSidebar,
   },
 
 head() {
@@ -54,7 +54,7 @@ head() {
       { src: '/dist/js/pages/dashboard.js', body: true }
     ],
     };
-  }
+  },
 
 }
 </script>

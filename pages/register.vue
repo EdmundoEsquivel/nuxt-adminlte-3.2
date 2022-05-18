@@ -10,7 +10,7 @@
                   <h1 style="margin-bottom: -5px">
                     <strong>Vamos a ganar</strong>
                   </h1>
-                  <p>SUI - Sistema Unico de Información</p>
+                  <p>Registro de usuarios</p>
                 </div>
                 <div class="form-top-right">
                   <i class="fa fa-lock"></i>
@@ -31,20 +31,23 @@
                       <ValidationProvider
                         rules="required|email"
                         v-slot="{ errors }"
-                        name="Correo Electronico"
                       >
                         <input
                           type="text"
-                          name="name"
+                          name="email"
                           placeholder="Nombre de Usuario"
-                          class="form-username form-control"
+                        
+                          class="form-control"
                           :class="{
                             'border border-danger boder-solid': errors[0],
                           }"
                           id="email"
                           v-model="email"
+                          
                         />
+                        <RevealText> 
                         <p class="text-xs text-danger mt-1">{{ errors[0] }}</p>
+                        </RevealText>
                       </ValidationProvider>
                     </div>
                     <div class="form-group">
@@ -54,33 +57,26 @@
                       <ValidationProvider
                         rules="required|min:6"
                         v-slot="{ errors }"
-                        name="Contraseña"
                       >
                         <input
                           type="password"
                           name="pass"
                           placeholder="Contraseña"
-                          class="form-password form-control"
                           :class="{
                             'border border-danger boder-solid': errors[0],
                           }"
+                          class="form-password form-control"
                           id="password"
                           v-model="password"
                         />
+                        <RevealText> 
                         <p class="text-xs text-danger mt-1">{{ errors[0] }}</p>
+                        </RevealText> 
                       </ValidationProvider>
                     </div>
                     <button type="submit" class="btn" id="login">
                       Ingresar!
                     </button>
-                    <div style="padding-top: 20px">
-                      <nuxt-link
-                        class="text-sm"
-                        style="color: white"
-                        to="reset-password"
-                        >Recordar Password</nuxt-link
-                      >
-                    </div>
                   </form>
                 </ValidationObserver>
               </div>
@@ -94,7 +90,6 @@
 
 <script>
 import swal from "sweetalert";
-
 export default {
   layout: "loginTemplate",
   data() {
@@ -112,22 +107,12 @@ export default {
     async submitForm() {
       // console.log("esta dando click");
       try {
-        const response = await this.$axios.post("/api/users/login", {
+        const response = await this.$axios.post("/api/users", {
           email: this.email,
           password: this.password,
         });
 
-        // console.log(response)
         this.$store.commit("SET_USER", response.data);
-        // this.$router.push({
-        //   path: "/",
-        //   // prefetch: "false",
-        //   // replace: 'true'
-        // });
-        // fetch({ response, redirect });
-        // if (response) {
-        //   return redirect("/");
-        // }
         this.$router.push("/");
         // return (location = "/");
       } catch ({ response }) {
